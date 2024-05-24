@@ -109,6 +109,8 @@ u_{i,j}^{n+1} = 2u_{i,j}^n - u_{i,j}^{n-1} + \left( \frac{c \Delta t}{\Delta x} 
 \end{cases}
 $$
 
+To avoid potential 'fictional' values $ u_{i+1, j}^0$, $u_{i-1, j}^0$, $u_{i, j+1}^0$, $u_{i, j-1}^0 $ when calculating $u^1_{i,j}$ and after $u_{i,j}^{n+1}$, we will apply boundary conditions.
+
 ### Boundary Conditions
 
 We apply homogeneous Neumann boundary conditions, which specify that the normal derivative of $ u $ on the boundary is zero
@@ -138,12 +140,5 @@ $$ u_{0,j}^{n+1} = 2u_{0,j}^n - u_{0,j}^{n-1} + \left( \frac{c \Delta t}{\Delta 
 $$ u_{0,j}^{n+1} = 2u_{0,j}^n - u_{0,j}^{n-1} + \left( \frac{c \Delta t}{\Delta x} \right)^2 (2u_{1,j}^n - 2u_{0,j}^n) + \left( \frac{c \Delta t}{\Delta y} \right)^2 (u_{0,j+1}^n - 2u_{0,j}^n + u_{0,j-1}^n), $$
 
 
-$$ u_{0,0}^{n+1} = 2u_{0,0}^n - u_{0,0}^{n-1} + \left( \frac{c \Delta t}{\Delta x} \right)^2 (2u_{1,0}^n - 2u_{0,0}^n) + \left( \frac{c \Delta t}{\Delta y} \right)^2 (2u_{0,1}^n - 2u_{0,0}^n), $$
-
-
-In the discrete setting, this is implemented by setting the boundary values to the values of their adjacent inner points:
-
-$$ u_{0, j} = u_{1, j}, \quad u_{Nx-1, j} = u_{Nx-2, j} $$
-$$ u_{i, 0} = u_{i, 1}, \quad u_{i, Ny-1} = u_{i, Ny-2} $$
 
 
